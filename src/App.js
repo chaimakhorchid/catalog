@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import Home from './Pages/Home';
+import Movies from './Pages/Movies';
+import NotFound from './Pages/NotFound';
+
+
+
+class App extends Component {
+  render() {
+    const title = "Gringo"
+    return (
+      <BrowserRouter>
+      <div>
+          <nav>
+            <ul style={{listStyle:"none"}}>
+              <li><Link to="/">Home</Link></li>
+            </ul>
+          </nav>
+          </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/movies/:id" component={Movies}/>
+        <Route path="*" component={NotFound} />
+      </Switch>
+      </BrowserRouter>
+
+    )
+  }
 }
 
-export default App;
+export default App
